@@ -7,12 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] Transform target;
 
-    NavMeshAgent agent;
+    NavMeshAgent navMeshAgent;
+    Animator animator;
     Camera mainCamera;
+
+    string forwardSpeed = "ForwardSpeed";
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         mainCamera = Camera.main;
     }
 
@@ -20,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
             MoveToMousePosition();
+
+        UpdateAnimator();
     }
 
     private void MoveToMousePosition()
@@ -29,6 +35,14 @@ public class PlayerMovement : MonoBehaviour
         bool isHitSomething = Physics.Raycast(ray, out hit);
 
         if(isHitSomething)
-            agent.destination = hit.point;
+            navMeshAgent.destination = hit.point;
+    }
+
+    private void UpdateAnimator()
+    {
+        Vector3 velocity = navMeshAgent.velocity;
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z;
+        animator.SetFloat(forwardSpeed, speed);
     }
 }
