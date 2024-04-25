@@ -5,11 +5,8 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-	[SerializeField] Transform target;
-
     NavMeshAgent navMeshAgent;
     Animator animator;
-    Camera mainCamera;
 
     string forwardSpeed = "ForwardSpeed";
 
@@ -17,25 +14,16 @@ public class PlayerMovement : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        mainCamera = Camera.main;
     }
 
     private void Update()
     {
-        if(Input.GetMouseButton(0))
-            MoveToMousePosition();
-
         UpdateAnimator();
     }
 
-    private void MoveToMousePosition()
+    public void MoveToPosition(Vector3 destination)
     {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        bool isHitSomething = Physics.Raycast(ray, out hit);
-
-        if(isHitSomething)
-            navMeshAgent.destination = hit.point;
+        navMeshAgent.destination = destination;
     }
 
     private void UpdateAnimator()
