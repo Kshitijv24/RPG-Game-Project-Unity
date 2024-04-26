@@ -11,7 +11,7 @@ namespace RPG.Control
         private void Start()
         {
             mainCamera = Camera.main;
-            playerMovement = new PlayerMovement();
+            playerMovement = GetComponent<PlayerMovement>();
         }
 
         private void Update()
