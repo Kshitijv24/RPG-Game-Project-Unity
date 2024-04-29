@@ -1,3 +1,4 @@
+using RPG.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,7 @@ namespace RPG.Movement
     {
         NavMeshAgent navMeshAgent;
         Animator animator;
+        Fighter fighter;
 
         string forwardSpeed = "ForwardSpeed";
 
@@ -14,6 +16,7 @@ namespace RPG.Movement
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
+            fighter = GetComponent<Fighter>();
         }
 
         private void Update()
@@ -21,9 +24,21 @@ namespace RPG.Movement
             UpdateAnimator();
         }
 
+        public void StartMoveAction(Vector3 destination)
+        {
+            fighter.CancelAttack();
+            MoveToPosition(destination);
+        }
+
         public void MoveToPosition(Vector3 destination)
         {
             navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
+        }
+
+        public void StopMovement()
+        {
+            navMeshAgent.isStopped = true;
         }
 
         private void UpdateAnimator()

@@ -23,7 +23,7 @@ namespace RPG.Control
             if (InteractWithCombat()) return;
             if (MoveToMousePosition()) return;
 
-            print("Can not move there");
+            //print("Can not move there");
         }
 
         private bool InteractWithCombat()
@@ -53,7 +53,7 @@ namespace RPG.Control
             if (isHitSomething)
             {
                 if (Input.GetMouseButton(0))
-                    playerMovement.MoveToPosition(hit.point);
+                    playerMovement.StartMoveAction(hit.point);
                 return true;
             }
             return false;
