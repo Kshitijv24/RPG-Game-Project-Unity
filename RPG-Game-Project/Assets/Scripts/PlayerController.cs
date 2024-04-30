@@ -37,9 +37,8 @@ namespace RPG.Control
                 if(target == null) continue;
 
                 if (Input.GetMouseButtonDown(0))
-                {
                     fighter.Attack(target);
-                }
+
                 return true;
             }
             return false;
@@ -54,14 +53,12 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                     playerMovement.StartMoveAction(hit.point);
+
                 return true;
             }
             return false;
         }
 
-        private Ray GetMouseRay()
-        {
-            return mainCamera.ScreenPointToRay(Input.mousePosition);
-        }
+        private Ray GetMouseRay() => mainCamera.ScreenPointToRay(Input.mousePosition);
     }
 }

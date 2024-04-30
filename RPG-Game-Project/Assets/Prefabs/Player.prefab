@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1891795964379584844}
   - component: {fileID: 3509537649749590109}
   - component: {fileID: 596783934475927617}
+  - component: {fileID: 7680450364368879887}
   - component: {fileID: 7343917853280917041}
   - component: {fileID: 2663773766841786977}
   - component: {fileID: 3068517610810760147}
@@ -36,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 1684546783491775548}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1891795964379584844
 MeshRenderer:
@@ -123,6 +124,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7680450364368879887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764120247223483563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a380825c88acae4c85a2c43ed6f9808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7343917853280917041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a354f1f797bb6d4894030c05a2ce910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponRange: 2
 --- !u!1001 &1684546783491619110
 PrefabInstance:
   m_ObjectHideFlags: 0

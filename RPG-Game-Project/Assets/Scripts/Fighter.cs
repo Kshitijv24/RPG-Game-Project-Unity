@@ -1,3 +1,4 @@
+using RPG.Core;
 using RPG.Movement;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace RPG.Combat
 
         Transform target;
         PlayerMovement playerMovement;
+        ActionScheduler actionScheduler;
 
         private void Start()
         {
             playerMovement = GetComponent<PlayerMovement>();
+            actionScheduler = GetComponent<ActionScheduler>();
         }
 
         private void Update()
@@ -27,19 +30,14 @@ namespace RPG.Combat
                 playerMovement.StopMovement();
         }
 
-        private bool GetIsInRange()
-        {
-            return Vector3.Distance(transform.position, target.position) < weaponRange;
-        }
+        private bool GetIsInRange() => Vector3.Distance(transform.position, target.position) < weaponRange;
 
         public void Attack(CombatTarget combatTarget)
         {
+            actionScheduler.StartAction(this);
             target = combatTarget.transform;
         }
 
-        public void CancelAttack()
-        {
-            target = null;
-        }
+        public void CancelAttack() => target = null;
     }
 }
