@@ -11,11 +11,14 @@ namespace RPG.Combat
         Transform target;
         PlayerMovement playerMovement;
         ActionScheduler actionScheduler;
+        Animator animator;
+        string attack = "Attack";
 
         private void Start()
         {
             playerMovement = GetComponent<PlayerMovement>();
             actionScheduler = GetComponent<ActionScheduler>();
+            animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -25,8 +28,13 @@ namespace RPG.Combat
             if (!GetIsInRange())
                 playerMovement.MoveToPosition(target.position);
             else
+            {
                 playerMovement.CancelAction();
+                TriggerAttackAnimation();
+            }
         }
+
+        private void TriggerAttackAnimation() => animator.SetTrigger(attack);
 
         private bool GetIsInRange() => Vector3.Distance(transform.position, target.position) < weaponRange;
 
@@ -37,5 +45,11 @@ namespace RPG.Combat
         }
 
         public void CancelAction() => target = null;
+
+        // Default Unity's Animation Event
+        private void Hit()
+        {
+
+        }
     }
 }
