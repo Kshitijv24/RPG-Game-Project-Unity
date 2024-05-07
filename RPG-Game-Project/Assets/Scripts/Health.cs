@@ -14,6 +14,8 @@ namespace RPG.Combat
 
         private void Start() => animator = GetComponent<Animator>();
 
+        public bool IsDead() => isDead;
+
         public void TakeDamage(float damage)
         {
             healthPoints = Mathf.Max(healthPoints - damage, 0);

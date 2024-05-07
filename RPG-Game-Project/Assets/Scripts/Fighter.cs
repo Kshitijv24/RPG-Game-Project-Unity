@@ -10,11 +10,12 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float weaponDamage = 5f;
 
-        Transform target;
+        Health target;
         PlayerMovement playerMovement;
         ActionScheduler actionScheduler;
         Animator animator;
         string attack = "Attack";
+        string stopAttack = "StopAttack";
         float timeSinceLastAttack = 0f;
 
         private void Start()
@@ -30,8 +31,10 @@ namespace RPG.Combat
 
             if (target == null) return;
 
+            if (target.IsDead()) return;
+
             if (!GetIsInRange())
-                playerMovement.MoveToPosition(target.position);
+                playerMovement.MoveToPosition(target.transform.position);
             else
             {
                 playerMovement.CancelAction();
@@ -49,21 +52,21 @@ namespace RPG.Combat
             }
         }
 
-        // Default Unity's Animation Event
-        private void Hit()
-        {
-            Health health = target.GetComponent<Health>();
-            health.TakeDamage(weaponDamage);
-        }
+        // Default Unity's Animation Event, it calls automatically by unity.
+        private void Hit() => target.TakeDamage(weaponDamage);
 
-        private bool GetIsInRange() => Vector3.Distance(transform.position, target.position) < weaponRange;
+        private bool GetIsInRange() => Vector3.Distance(transform.position, target.transform.position) < weaponRange;
 
         public void Attack(CombatTarget combatTarget)
         {
             actionScheduler.StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<Health>();
         }
 
-        public void CancelAction() => target = null;
+        public void CancelAction()
+        {
+            animator.SetTrigger(stopAttack);
+            target = null;
+        }
     }
 }
