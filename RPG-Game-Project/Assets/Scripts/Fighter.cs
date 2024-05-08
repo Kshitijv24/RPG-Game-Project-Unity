@@ -56,7 +56,16 @@ namespace RPG.Combat
         // Default Unity's Animation Event, it calls automatically by unity.
         private void Hit() => target.TakeDamage(weaponDamage);
 
-        private bool GetIsInRange() => Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+        private bool GetIsInRange() => 
+            Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+
+        public bool CanAttack(CombatTarget combatTarget)
+        {
+            if (combatTarget == null) return false;
+
+            Health targetToTest = combatTarget.GetComponent<Health>();
+            return targetToTest != null && !targetToTest.IsDead();
+        }
 
         public void Attack(CombatTarget combatTarget)
         {
