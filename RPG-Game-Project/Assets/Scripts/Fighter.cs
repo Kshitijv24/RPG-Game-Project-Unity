@@ -48,13 +48,24 @@ namespace RPG.Combat
             if(timeSinceLastAttack > timeBetweenAttacks)
             {
                 // this will trigger the Hit() Function.
-                animator.SetTrigger(attack);
+                TriggerAttack();
                 timeSinceLastAttack = 0f;
             }
         }
 
+        private void TriggerAttack()
+        {
+            animator.ResetTrigger(stopAttack);
+            animator.SetTrigger(attack);
+        }
+
         // Default Unity's Animation Event, it calls automatically by unity.
-        private void Hit() => target.TakeDamage(weaponDamage);
+        private void Hit()
+        {
+            if (target == null) return;
+
+            target.TakeDamage(weaponDamage);
+        }
 
         private bool GetIsInRange() => 
             Vector3.Distance(transform.position, target.transform.position) < weaponRange;
@@ -75,8 +86,14 @@ namespace RPG.Combat
 
         public void CancelAction()
         {
-            animator.SetTrigger(stopAttack);
+            StopAttack();
             target = null;
+        }
+
+        private void StopAttack()
+        {
+            animator.ResetTrigger(attack);
+            animator.SetTrigger(stopAttack);
         }
     }
 }
