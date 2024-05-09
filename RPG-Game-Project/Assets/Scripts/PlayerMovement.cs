@@ -33,7 +33,7 @@ namespace RPG.Movement
             navMeshAgent.isStopped = false;
         }
 
-        public void CancelAction() => navMeshAgent.isStopped = true;
+        public void CancelAttack() => navMeshAgent.isStopped = true;
 
         private void UpdateAnimator()
         {

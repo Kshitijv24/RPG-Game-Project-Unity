@@ -82,6 +82,10 @@ PrefabInstance:
       propertyPath: healthPoints
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 596783934475927617, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: m_Speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1044496287777758900, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -177,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1464a34441279649a5cbbc1036571ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chaseDistance: 5
 --- !u!136 &6750796780049002091
 CapsuleCollider:
   m_ObjectHideFlags: 0

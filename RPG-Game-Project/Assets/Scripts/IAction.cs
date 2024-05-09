@@ -2,6 +2,6 @@ namespace RPG.Core
 {
     public interface IAction
     {
-        void CancelAction();
+        void CancelAttack();
     }
 }
