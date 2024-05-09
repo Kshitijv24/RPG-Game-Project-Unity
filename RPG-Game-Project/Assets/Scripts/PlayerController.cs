@@ -1,4 +1,5 @@
 using RPG.Combat;
+using RPG.Core;
 using RPG.Movement;
 using System;
 using UnityEngine;
@@ -10,16 +11,19 @@ namespace RPG.Control
         Camera mainCamera;
         PlayerMovement playerMovement;
         Fighter fighter;
+        Health health;
 
         private void Start()
         {
             mainCamera = Camera.main;
             playerMovement = GetComponent<PlayerMovement>();
             fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
         }
 
         private void Update()
         {
+            if (health.IsDead()) return;
             if (InteractWithCombat()) return;
             if (MoveToMousePosition()) return;
 

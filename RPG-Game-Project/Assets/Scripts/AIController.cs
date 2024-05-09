@@ -1,6 +1,5 @@
 using RPG.Combat;
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Control
@@ -11,16 +10,20 @@ namespace RPG.Control
 
         string playerTag = "Player";
         Fighter fighter;
+        Health health;
         GameObject player;
 
         private void Start()
         {
             fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
             player = GameObject.FindWithTag(playerTag);
         }
 
         private void Update()
         {
+            if (health.IsDead()) return;
+
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
                 fighter.Attack(player);
