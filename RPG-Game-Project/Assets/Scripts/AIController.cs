@@ -1,6 +1,7 @@
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using System;
 using UnityEngine;
 
 namespace RPG.Control
@@ -9,15 +10,20 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 3f;
+        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] float waypointTolerance = 1f;
 
-        string playerTag = "Player";
         Fighter fighter;
         Health health;
         PlayerMovement movement;
         ActionScheduler actionScheduler;
+
         GameObject player;
         Vector3 guardPosition;
+
+        string playerTag = "Player";
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        int currentWayPointIndex = 0;
 
         private void Start()
         {
@@ -44,20 +50,38 @@ namespace RPG.Control
             }
             else
             {
-                GuardBehaviour();
+                PatrolBehaviour();
             }
             timeSinceLastSawPlayer += Time.deltaTime;
         }
 
-        private void GuardBehaviour()
+        private void PatrolBehaviour()
         {
-            movement.StartMoveAction(guardPosition);
+            Vector3 nextPosition = guardPosition;
+
+            if(patrolPath != null)
+            {
+                if (AtWayPoint())
+                {
+                    CycleWayPoint();
+                }
+                nextPosition = GetCurrentWaypoint();
+            }
+
+            movement.StartMoveAction(nextPosition);
         }
 
-        private void SuspicionBehaviour()
+        private bool AtWayPoint()
         {
-            actionScheduler.CancelCurrentAction();
+            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+            return distanceToWaypoint < waypointTolerance;
         }
+
+        private void CycleWayPoint() => currentWayPointIndex = patrolPath.GetNextIndex(currentWayPointIndex);
+
+        private Vector3 GetCurrentWaypoint() => patrolPath.GetWaypoint(currentWayPointIndex);
+
+        private void SuspicionBehaviour() => actionScheduler.CancelCurrentAction();
 
         private void AttackBehaviour()
         {

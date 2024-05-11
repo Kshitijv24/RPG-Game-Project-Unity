@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 8a2e93de2711e6743bd67b1531c38f5f, type: 2}
+--- !u!114 &5372841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6047918933845616917, guid: 13b4430dc49b62649a5257d8d0e89803, type: 3}
+  m_PrefabInstance: {fileID: 7174926599224236627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0cc482aefd29b4c8cc0d84a4113458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &66180642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -752,6 +763,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6310382273756540197, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
+      propertyPath: patrolPath
+      value: 
+      objectReference: {fileID: 5372841}
+    - target: {fileID: 6310382273756540197, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
+      propertyPath: waypointTolerance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9039437231090994143, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1168,15 +1187,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413923222966012195, guid: 04f8e5c37a9d560479fcaf4e747eb52d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.23
       objectReference: {fileID: 0}
     - target: {fileID: 8413923222966012195, guid: 04f8e5c37a9d560479fcaf4e747eb52d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 8413923222966012195, guid: 04f8e5c37a9d560479fcaf4e747eb52d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.77
+      value: 8.81
       objectReference: {fileID: 0}
     - target: {fileID: 8413923222966012195, guid: 04f8e5c37a9d560479fcaf4e747eb52d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1292,6 +1311,10 @@ PrefabInstance:
     - target: {fileID: 5129763775984429504, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310382273756540197, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
+      propertyPath: patrolPath
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9039437231090994143, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
       propertyPath: m_RootOrder
