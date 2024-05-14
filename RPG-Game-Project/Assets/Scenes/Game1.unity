@@ -485,7 +485,7 @@ Transform:
   - {fileID: 1634036642}
   - {fileID: 1529560040}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &588224610
 PrefabInstance:
@@ -1553,7 +1553,7 @@ Transform:
   - {fileID: 632439026}
   - {fileID: 897621909}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1255791737
 GameObject:
@@ -1819,7 +1819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413923222966012195, guid: 04f8e5c37a9d560479fcaf4e747eb52d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8413923222966012195, guid: 04f8e5c37a9d560479fcaf4e747eb52d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2803,19 +2803,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1663939602918307561, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1663939602918307561, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 33.11
       objectReference: {fileID: 0}
     - target: {fileID: 1663939602918307561, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 1663939602918307561, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 39.12
       objectReference: {fileID: 0}
     - target: {fileID: 1663939602918307561, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2848,6 +2848,46 @@ PrefabInstance:
     - target: {fileID: 2304335808563670840, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
       propertyPath: m_Name
       value: FollowCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.330002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5110749
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.19520614
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.80926615
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.21397509
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 33.083
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -117.434
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310504087595023415, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -6.664
       objectReference: {fileID: 0}
     - target: {fileID: 3971556663010195902, guid: 423498e2c9688284994743c8ee0a6018, type: 3}
       propertyPath: player
