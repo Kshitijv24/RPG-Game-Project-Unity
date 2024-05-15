@@ -34,7 +34,7 @@ namespace RPG.Combat
             if (target.IsDead()) return;
 
             if (!GetIsInRange())
-                playerMovement.MoveToPosition(target.transform.position);
+                playerMovement.MoveToPosition(target.transform.position, 1f);
             else
             {
                 playerMovement.CancelAttack();
