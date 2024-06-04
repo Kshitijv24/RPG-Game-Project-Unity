@@ -9,14 +9,14 @@ namespace RPG.Control
     public class PlayerController : MonoBehaviour
     {
         Camera mainCamera;
-        PlayerMovement playerMovement;
+        MovementHandler playerMovement;
         Fighter fighter;
         Health health;
 
         private void Start()
         {
             mainCamera = Camera.main;
-            playerMovement = GetComponent<PlayerMovement>();
+            playerMovement = GetComponent<MovementHandler>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
         }

@@ -19,7 +19,7 @@ namespace RPG.Control
 
         Fighter fighter;
         Health health;
-        PlayerMovement movement;
+        MovementHandler movement;
         ActionScheduler actionScheduler;
 
         GameObject player;
@@ -34,7 +34,7 @@ namespace RPG.Control
         {
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
-            movement = GetComponent<PlayerMovement>();
+            movement = GetComponent<MovementHandler>();
             actionScheduler = GetComponent<ActionScheduler>();
             player = GameObject.FindWithTag(playerTag);
             guardPosition = transform.position;

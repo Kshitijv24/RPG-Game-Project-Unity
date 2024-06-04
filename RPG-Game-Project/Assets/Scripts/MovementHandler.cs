@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace RPG.Movement
 {
-    public class PlayerMovement : MonoBehaviour, IAction, ISaveable
+    public class MovementHandler : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] float maxSpeed = 6f;
 

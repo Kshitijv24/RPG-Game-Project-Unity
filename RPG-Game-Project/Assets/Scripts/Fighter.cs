@@ -11,7 +11,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5f;
 
         Health target;
-        PlayerMovement playerMovement;
+        MovementHandler playerMovement;
         ActionScheduler actionScheduler;
         Animator animator;
         string attack = "Attack";
@@ -20,7 +20,7 @@ namespace RPG.Combat
 
         private void Start()
         {
-            playerMovement = GetComponent<PlayerMovement>();
+            playerMovement = GetComponent<MovementHandler>();
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
         }
