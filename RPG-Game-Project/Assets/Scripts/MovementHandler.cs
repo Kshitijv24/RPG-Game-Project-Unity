@@ -16,7 +16,7 @@ namespace RPG.Movement
 
         string forwardSpeed = "ForwardSpeed";
 
-        private void Start()
+        private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();

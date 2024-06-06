@@ -14,7 +14,7 @@ namespace RPG.Core
         bool isDead;
         ActionScheduler actionScheduler;
 
-        private void Start()
+        private void Awake()
         {
             animator = GetComponent<Animator>();
             actionScheduler = GetComponent<ActionScheduler>();

@@ -19,10 +19,6 @@ namespace RPG.SceneManagement
         [SerializeField] float fadeInTime = 2f;
         [SerializeField] float fadeWaitTime = 0.5f;
 
-        CanvasFader canvasFader;
-
-        private void Start() => canvasFader = FindObjectOfType<CanvasFader>();
-
         private void OnTriggerEnter(Collider other)
         {
             PlayerController player = other.GetComponent<PlayerController>();
@@ -41,8 +37,15 @@ namespace RPG.SceneManagement
 
             DontDestroyOnLoad(gameObject);
 
+            CanvasFader canvasFader = FindObjectOfType<CanvasFader>();
+
             yield return canvasFader.FadeOut(fadeOutTime);
+
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.Save();
+
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
+            savingWrapper.Load();
 
             Portal otherPortal = GetOtherPortal();
             SetPlayerSpawnPoint(otherPortal);
