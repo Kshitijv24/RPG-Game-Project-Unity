@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: weaponRange
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3068517610810760147, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 4664562333503163554, guid: 360ca97dc5e149e41ab82d0a4d42065c, type: 3}
+    - target: {fileID: 3068517610810760147, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 7915708695553894197}
     - target: {fileID: 3764120247223483563, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -131,3 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12b949eedf8612488737b9514b3ec3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7915708695553894197 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1684546783491682466, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+  m_PrefabInstance: {fileID: 8843531731944970135}
+  m_PrefabAsset: {fileID: 0}
