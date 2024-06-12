@@ -9,11 +9,19 @@ namespace RPG.Combat
     {
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         [SerializeField] GameObject weaponPrefab = null;
+        [SerializeField] float weaponRange = 2f;
+        [SerializeField] float weaponDamage = 5f;
 
         public void Spawn(Transform handTransform, Animator animator)
         {
+            if (animatorOverrideController == null || weaponPrefab == null) return;
+
             Instantiate(weaponPrefab, handTransform);
             animator.runtimeAnimatorController = animatorOverrideController;
         }
+
+        public float GetDamage() => weaponDamage;
+
+        public float GetRange() => weaponRange;
     }
 }
