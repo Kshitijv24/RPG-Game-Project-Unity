@@ -13,12 +13,12 @@ namespace RPG.Control
         Fighter fighter;
         Health health;
 
-        private void Start()
+        private void Awake()
         {
-            mainCamera = Camera.main;
             playerMovement = GetComponent<MovementHandler>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
+            mainCamera = Camera.main;
         }
 
         private void Update()

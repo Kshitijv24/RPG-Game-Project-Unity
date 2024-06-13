@@ -140,12 +140,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ddf8eb41a12ea65438cae6adba9853c4, type: 2}
     - target: {fileID: 3068517610810760147, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: ddf8eb41a12ea65438cae6adba9853c4, type: 2}
+    - target: {fileID: 3068517610810760147, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: handTransform
       value: 
       objectReference: {fileID: 7471863536324751183}
     - target: {fileID: 3764120247223483563, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343917853280917041, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: maxSpeed
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
