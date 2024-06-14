@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3f6fc0cf5e5d31c458bc74ede87cb8ae, type: 2}
+    - target: {fileID: 1684546783491518990, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684546783491521908, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3068517610810760147, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: weapon
       value: 
@@ -79,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 3068517610810760147, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: defaultWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: ddf8eb41a12ea65438cae6adba9853c4, type: 2}
+      objectReference: {fileID: 11400000, guid: e80d5198ce2fbae4da089de987a2f2cb, type: 2}
     - target: {fileID: 3068517610810760147, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: handTransform
       value: 

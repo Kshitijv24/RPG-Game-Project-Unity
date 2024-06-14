@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
-  handTransform: {fileID: 0}
+  rightHand: {fileID: 1684546783491682466}
+  leftHand: {fileID: 1684546783491739850}
   defaultWeapon: {fileID: 0}
 --- !u!114 &-5216135988494749301
 MonoBehaviour:
@@ -280,6 +281,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &1684546783491682466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 1684546783491619110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1684546783491739850 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 1684546783491619110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1684546783491775548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435482, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
