@@ -50,7 +50,7 @@ namespace RPG.Combat
                     GetHandTransform(rightHand, leftHand).position,
                     Quaternion.identity);
 
-            projectileInstance.SetTarget(target);
+            projectileInstance.SetTarget(target, weaponDamage);
         }
     }
 }
