@@ -6,19 +6,26 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 	[SerializeField] float speed = 1.0f;
+    [SerializeField] bool isHoming = true;
 
     Health target = null;
     float damage = 0;
 
     CapsuleCollider targetCapsuleCollider;
 
-    private void Start() => targetCapsuleCollider = target.GetComponent<CapsuleCollider>();
+    private void Start()
+    {
+        targetCapsuleCollider = target.GetComponent<CapsuleCollider>();
+        transform.LookAt(GetAimLocation());
+    }
 
     private void Update()
     {
         if (target == null) return;
 
-        transform.LookAt(GetAimLocation());
+        if(isHoming && !target.IsDead())
+            transform.LookAt(GetAimLocation());
+
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
@@ -35,6 +42,7 @@ public class Projectile : MonoBehaviour
         Health targetHealth = other.GetComponent<Health>();
 
         if (targetHealth != target) return;
+        if (target.IsDead()) return;
 
         target.TakeDamage(damage);
         Destroy(gameObject);
