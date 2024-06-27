@@ -7,15 +7,16 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] Transform rightHand = null;
-        [SerializeField] Transform leftHand = null;
-        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] Transform rightHand;
+        [SerializeField] Transform leftHand;
+        [SerializeField] Weapon defaultWeapon;
+        [SerializeField] string defaultWeaponName = "Unarmed";
 
         Health target;
         MovementHandler playerMovement;
         ActionScheduler actionScheduler;
         Animator animator;
-        Weapon currentWeapon = null;
+        Weapon currentWeapon;
 
         string attack = "Attack";
         string stopAttack = "StopAttack";
@@ -28,7 +29,11 @@ namespace RPG.Combat
             animator = GetComponent<Animator>();
         }
 
-        private void Start() => EquipWeapon(defaultWeapon);
+        private void Start()
+        {
+            Weapon weapon = Resources.Load<Weapon>(defaultWeaponName);
+            EquipWeapon(weapon);
+        }
 
         private void Update()
         {
