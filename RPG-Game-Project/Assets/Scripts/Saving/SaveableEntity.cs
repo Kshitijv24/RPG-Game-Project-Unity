@@ -13,10 +13,7 @@ namespace RPG.Saving
         [SerializeField] string uniqueIdentifier = "";
         static Dictionary<string, SaveableEntity> globalLookup = new Dictionary<string, SaveableEntity>();
 
-        public string GetUniqueIdentifier()
-        {
-            return uniqueIdentifier;
-        }
+        public string GetUniqueIdentifier() => uniqueIdentifier;
 
         public object CaptureState()
         {
