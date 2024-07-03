@@ -109,6 +109,10 @@ PrefabInstance:
       value: player
       objectReference: {fileID: 0}
     - target: {fileID: 5751897735658508930, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: startingLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751897735658508930, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: characterClass
       value: 0
       objectReference: {fileID: 0}
