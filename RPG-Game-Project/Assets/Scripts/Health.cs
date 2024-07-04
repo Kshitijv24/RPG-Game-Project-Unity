@@ -13,6 +13,7 @@ namespace RPG.Attributes
         string die = "Die";
         bool isDead;
         ActionScheduler actionScheduler;
+        float originalHealthPoints;
 
         private void Awake()
         {
@@ -23,6 +24,7 @@ namespace RPG.Attributes
         private void Start()
         {
             healthPoints = GetComponent<BaseStats>().GetHealth();
+            originalHealthPoints = GetComponent<BaseStats>().GetHealth();
         }
 
         public bool IsDead() => isDead;
@@ -34,6 +36,8 @@ namespace RPG.Attributes
             if (healthPoints == 0)
                 Die();
         }
+
+        public float GetHealthPercentage() => 100 * (healthPoints / originalHealthPoints);
 
         private void Die()
         {
