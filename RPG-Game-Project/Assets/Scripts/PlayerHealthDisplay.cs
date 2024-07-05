@@ -5,7 +5,7 @@ using System;
 
 namespace RPG.Attributes
 {
-    public class HealthDisplay : MonoBehaviour
+    public class PlayerHealthDisplay : MonoBehaviour
     {
         Health health;
         TextMeshProUGUI healthText;
