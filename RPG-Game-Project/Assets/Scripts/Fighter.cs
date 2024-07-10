@@ -14,7 +14,7 @@ namespace RPG.Combat
         [SerializeField] Weapon defaultWeapon;
 
         Health target;
-        MovementHandler playerMovement;
+        MovementHandler movement;
         ActionScheduler actionScheduler;
         Animator animator;
         Weapon currentWeapon;
@@ -25,7 +25,7 @@ namespace RPG.Combat
 
         private void Awake()
         {
-            playerMovement = GetComponent<MovementHandler>();
+            movement = GetComponent<MovementHandler>();
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
         }
@@ -46,10 +46,10 @@ namespace RPG.Combat
             if (target.IsDead()) return;
 
             if (!GetIsInRange())
-                playerMovement.MoveToPosition(target.transform.position, 1f);
+                movement.MoveToPosition(target.transform.position, 1f);
             else
             {
-                playerMovement.CancelAttack();
+                movement.CancelAttack();
                 AttackBehaviour();
             }
         }
@@ -85,9 +85,9 @@ namespace RPG.Combat
             if (target == null) return;
 
             if (currentWeapon.HasProjectile())
-                currentWeapon.LaunchProjectile(rightHand, leftHand, target);
+                currentWeapon.LaunchProjectile(rightHand, leftHand, target, gameObject);
             else
-                target.TakeDamage(currentWeapon.GetDamage());
+                target.TakeDamage(gameObject, currentWeapon.GetDamage());
         }
 
         private void Shoot() => Hit();
@@ -113,7 +113,7 @@ namespace RPG.Combat
         {
             StopAttack();
             target = null;
-            playerMovement.CancelAttack();
+            movement.CancelAttack();
         }
 
         private void StopAttack()
