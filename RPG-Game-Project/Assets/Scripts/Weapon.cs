@@ -64,7 +64,7 @@ namespace RPG.Combat
 
         public bool HasProjectile() => projectile != null;
 
-        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator)
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject damageDealer)
         {
             Projectile projectileInstance =
                 Instantiate(
@@ -72,7 +72,7 @@ namespace RPG.Combat
                     GetHandTransform(rightHand, leftHand).position,
                     Quaternion.identity);
 
-            projectileInstance.SetTarget(target, instigator, weaponDamage);
+            projectileInstance.SetTarget(target, damageDealer, weaponDamage);
         }
     }
 }

@@ -9,15 +9,15 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] Transform rightHand;
-        [SerializeField] Transform leftHand;
-        [SerializeField] Weapon defaultWeapon;
+        [SerializeField] Transform rightHand = null;
+        [SerializeField] Transform leftHand = null;
+        [SerializeField] Weapon defaultWeapon = null;
 
-        Health target;
-        MovementHandler movement;
-        ActionScheduler actionScheduler;
-        Animator animator;
-        Weapon currentWeapon;
+        Health target = null;
+        MovementHandler movement = null;
+        ActionScheduler actionScheduler = null;
+        Animator animator = null;
+        Weapon currentWeapon = null;
 
         string attack = "Attack";
         string stopAttack = "StopAttack";
@@ -32,7 +32,7 @@ namespace RPG.Combat
 
         private void Start()
         {
-            if (defaultWeapon != null) return;
+            if (currentWeapon != null) return;
 
             EquipWeapon(defaultWeapon);
         }
@@ -92,8 +92,13 @@ namespace RPG.Combat
 
         private void Shoot() => Hit();
 
-        private bool GetIsInRange() => 
-            Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+        private bool GetIsInRange()
+        {
+            if (currentWeapon == null)
+                Debug.Log("currentWeapon is null");
+
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+        }
 
         public bool CanAttack(GameObject combatTarget)
         {

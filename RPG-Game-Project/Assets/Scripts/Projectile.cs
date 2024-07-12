@@ -9,15 +9,15 @@ namespace RPG.Combat
     public class Projectile : MonoBehaviour
     {
         [SerializeField] float speed = 1.0f;
-        [SerializeField] bool isHoming = true;
         [SerializeField] Transform hitEffect;
+        [SerializeField] bool isHoming = true;
         [SerializeField] float maxLifeTime = 10f;
-        [SerializeField] GameObject[] destroyOnHitArray;
         [SerializeField] float lifeAfterImpact = 0.1f;
+        [SerializeField] GameObject[] destroyOnHitArray;
 
-        Health target;
+        GameObject damageDealer = null;
+        Health target = null;
         float damage = 0;
-        GameObject instigator;
 
         CapsuleCollider targetCapsuleCollider;
 
@@ -37,11 +37,11 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
-        public void SetTarget(Health target, GameObject instigator, float damage)
+        public void SetTarget(Health target, GameObject damageDealer, float damage)
         {
             this.target = target;
             this.damage = damage;
-            this.instigator = instigator;
+            this.damageDealer = damageDealer;
 
             Destroy(gameObject, maxLifeTime);
         }
@@ -55,7 +55,7 @@ namespace RPG.Combat
             if (targetHealth != target) return;
             if (target.IsDead()) return;
 
-            target.TakeDamage(instigator, damage);
+            target.TakeDamage(damageDealer, damage);
             speed = 0;
 
             if (hitEffect != null)
