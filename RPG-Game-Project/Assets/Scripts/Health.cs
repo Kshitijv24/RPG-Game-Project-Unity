@@ -24,8 +24,8 @@ namespace RPG.Attributes
 
         private void Start()
         {
-            healthPoints = GetComponent<BaseStats>().GetHealth();
-            originalHealthPoints = GetComponent<BaseStats>().GetHealth();
+            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            originalHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
         public bool IsDead() => isDead;
@@ -57,7 +57,7 @@ namespace RPG.Attributes
             Experience experience = damageDealer.GetComponent<Experience>();
             if (experience == null) return;
 
-            experience.GainExperience(GetComponent<BaseStats>().GetExperiencePoints());
+            experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperiencePoints));
         }
 
         public object CaptureState() => healthPoints;

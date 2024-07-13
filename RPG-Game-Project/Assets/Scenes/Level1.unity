@@ -4364,6 +4364,10 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: 27cb4f61-b032-4dfe-9438-5da90b702dc1
       objectReference: {fileID: 0}
+    - target: {fileID: 4386113606784583657, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
+      propertyPath: characterClass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5129763775984429504, guid: aa4cf0cf570acf94fbc4a583f59e20f1, type: 3}
       propertyPath: m_Name
       value: Enemy (3)
