@@ -20,10 +20,6 @@ namespace RPG.Attributes
         {
             animator = GetComponent<Animator>();
             actionScheduler = GetComponent<ActionScheduler>();
-        }
-
-        private void Start()
-        {
             healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
             originalHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
         }

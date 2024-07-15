@@ -41,6 +41,7 @@ namespace RPG.SceneManagement
 
             DontDestroyOnLoad(gameObject);
 
+            savingWrapper.Save();
             CanvasFader canvasFader = FindObjectOfType<CanvasFader>();
 
             yield return canvasFader.FadeOut(fadeOutTime);
