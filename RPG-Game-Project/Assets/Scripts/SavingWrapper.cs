@@ -31,10 +31,14 @@ namespace RPG.SceneManagement
                 Load();
             if (Input.GetKeyDown(KeyCode.S))
                 Save();
+            if (Input.GetKeyDown(KeyCode.Delete))
+                Delete();
         }
 
         public void Load() => savingSystem.Load(defaultSaveFile);
 
         public void Save() => savingSystem.Save(defaultSaveFile);
+
+        public void Delete() => savingSystem.Delete(defaultSaveFile);
     }
 }

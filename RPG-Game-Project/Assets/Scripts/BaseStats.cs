@@ -15,12 +15,6 @@ namespace RPG.Stats
 
         private void Start() => experience = GetComponent<Experience>();
 
-        private void Update()
-        {
-            if (gameObject.tag == "Player")
-                print(GetLevel());
-        }
-
         public float GetStat(Stat stat) => progression.GetStat(stat, characterClass, GetLevel());
 
         public int GetLevel()

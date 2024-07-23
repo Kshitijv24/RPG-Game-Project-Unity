@@ -30,15 +30,9 @@ namespace RPG.Saving
             SaveFile(saveFile, state);
         }
 
-        public void Load(string saveFile)
-        {
-            RestoreState(LoadFile(saveFile));
-        }
+        public void Load(string saveFile) => RestoreState(LoadFile(saveFile));
 
-        public void Delete(string saveFile)
-        {
-            File.Delete(GetPathFromSaveFile(saveFile));
-        }
+        public void Delete(string saveFile) => File.Delete(GetPathFromSaveFile(saveFile));
 
         private Dictionary<string, object> LoadFile(string saveFile)
         {
@@ -87,9 +81,7 @@ namespace RPG.Saving
             }
         }
 
-        private string GetPathFromSaveFile(string saveFile)
-        {
-            return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
-        }
+        private string GetPathFromSaveFile(string saveFile) => 
+            Path.Combine(Application.persistentDataPath, saveFile + ".sav");
     }
 }
