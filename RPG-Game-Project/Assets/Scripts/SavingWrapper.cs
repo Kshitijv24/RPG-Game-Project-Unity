@@ -14,9 +14,13 @@ namespace RPG.SceneManagement
 
         SavingSystem savingSystem;
 
-        private void Awake() => savingSystem = GetComponent<SavingSystem>();
+        private void Awake()
+        {
+            savingSystem = GetComponent<SavingSystem>();
+            StartCoroutine(LoadLastScene());
+        }
 
-        IEnumerator Start()
+        IEnumerator LoadLastScene()
         {
             CanvasFader canvasFader = FindObjectOfType<CanvasFader>();
             canvasFader.FadeOutImmediate();
