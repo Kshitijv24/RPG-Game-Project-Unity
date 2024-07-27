@@ -8,21 +8,31 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        float healthPoints = -1.0f;
+        [SerializeField] float healthRegenPercentage = 70f;
+        [SerializeField] float healthPoints = -1.0f;
+
         Animator animator;
         string die = "Die";
         bool isDead;
         ActionScheduler actionScheduler;
-        float originalHealthPoints;
+        BaseStats baseStats;
 
         private void Awake()
         {
+            baseStats = GetComponent<BaseStats>();
             animator = GetComponent<Animator>();
             actionScheduler = GetComponent<ActionScheduler>();
-            originalHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            
+            baseStats.onLevelUP += RegenarateHealth;
 
             if(healthPoints < 0)
-                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+                healthPoints = baseStats.GetStat(Stat.Health);
+        }
+
+        private void RegenarateHealth()
+        {
+            float regenHealthPoints = baseStats.GetStat(Stat.Health) * (healthRegenPercentage / 100);
+            healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
         }
 
         public bool IsDead() => isDead;
@@ -38,7 +48,7 @@ namespace RPG.Attributes
             }
         }
 
-        public float GetHealthPercentage() => 100 * (healthPoints / originalHealthPoints);
+        public float GetHealthPercentage() => 100 * (healthPoints / baseStats.GetStat(Stat.Health));
 
         private void Die()
         {

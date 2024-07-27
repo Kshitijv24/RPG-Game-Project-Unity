@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: healthPoints
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -5216135988494749301, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: healthRegenPercentage
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 596783934475927617, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -116,6 +120,10 @@ PrefabInstance:
       propertyPath: characterClass
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5751897735658508930, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
+      propertyPath: levelUpParticleEffect
+      value: 
+      objectReference: {fileID: 4825593925745085361, guid: 2155674e7595d1d4596802252318365a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
