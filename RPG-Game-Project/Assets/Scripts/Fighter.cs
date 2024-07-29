@@ -3,6 +3,7 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
 using UnityEngine;
+using RPG.Stats;
 
 namespace RPG.Combat
 {
@@ -18,6 +19,7 @@ namespace RPG.Combat
         ActionScheduler actionScheduler = null;
         Animator animator = null;
         Weapon currentWeapon = null;
+        BaseStats baseStats = null;
 
         string attack = "Attack";
         string stopAttack = "StopAttack";
@@ -28,6 +30,7 @@ namespace RPG.Combat
             movement = GetComponent<MovementHandler>();
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
+            baseStats = GetComponent<BaseStats>();
         }
 
         private void Start()
@@ -83,11 +86,12 @@ namespace RPG.Combat
         private void Hit()
         {
             if (target == null) return;
+            float damage = baseStats.GetStat(Stat.Damage);
 
             if (currentWeapon.HasProjectile())
-                currentWeapon.LaunchProjectile(rightHand, leftHand, target, gameObject);
+                currentWeapon.LaunchProjectile(rightHand, leftHand, target, gameObject, damage);
             else
-                target.TakeDamage(gameObject, currentWeapon.GetDamage());
+                target.TakeDamage(gameObject, damage);
         }
 
         private void Shoot() => Hit();

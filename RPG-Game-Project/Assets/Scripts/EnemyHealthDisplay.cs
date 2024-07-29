@@ -26,7 +26,10 @@ namespace RPG.Combat
 
             Health health = fighter.GetTarget();
             if (health == null) return;
-            healthText.text = String.Format("{0:0}%", health.GetHealthPercentage());
+
+            healthText.text = String.Format("{0:0}/{1:0}",
+                health.GetHealthPoints(),
+                health.GetMaxHealthPoints());
         }
     }
 }

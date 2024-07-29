@@ -3,6 +3,7 @@ using RPG.Saving;
 using RPG.Stats;
 using RPG.Core;
 using System;
+using UnityEngine.Rendering;
 
 namespace RPG.Attributes
 {
@@ -39,6 +40,8 @@ namespace RPG.Attributes
 
         public void TakeDamage(GameObject damageDealer, float damage)
         {
+            print(gameObject.name + "Took damage: " + damage);
+
             healthPoints = Mathf.Max(healthPoints - damage, 0);
 
             if (healthPoints == 0)
@@ -47,6 +50,10 @@ namespace RPG.Attributes
                 AwardExperience(damageDealer);
             }
         }
+
+        public float GetHealthPoints() => healthPoints;
+
+        public float GetMaxHealthPoints() => baseStats.GetStat(Stat.Health);
 
         public float GetHealthPercentage() => 100 * (healthPoints / baseStats.GetStat(Stat.Health));
 

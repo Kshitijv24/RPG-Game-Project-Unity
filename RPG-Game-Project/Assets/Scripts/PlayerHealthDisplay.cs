@@ -16,6 +16,10 @@ namespace RPG.Attributes
             healthText = GetComponent<TextMeshProUGUI>();
         }
 
-        private void Update() => healthText.text = String.Format("{0:0}%", health.GetHealthPercentage());
+        private void Update() =>
+            healthText.text =
+            String.Format("{0:0}/{1:0}",
+                health.GetHealthPoints(),
+                health.GetMaxHealthPoints());
     }
 }
