@@ -17,5 +17,5 @@ public class PlayerLevelDisplay : MonoBehaviour
         levelText = GetComponent<TextMeshProUGUI>();
     }
 
-    private void Update() => levelText.text = String.Format("{0:0}", baseStats.CalculateLevel());
+    private void Update() => levelText.text = String.Format("{0:0}", baseStats.GetLevel());
 }

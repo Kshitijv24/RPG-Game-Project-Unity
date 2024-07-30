@@ -40,18 +40,29 @@ namespace RPG.Stats
 
         private void LevelUpEffect() => Instantiate(levelUpParticleEffect, transform);
 
-        public float GetStat(Stat stat) => progression.GetStat(stat, characterClass, CalculateLevel());
+        public float GetStat(Stat stat) => 
+            progression.GetStat(stat, characterClass, GetLevel()) + GetAdditiveModifier(stat);
+
+        private float GetAdditiveModifier(Stat stat)
+        {
+            float total = 0f;
+            foreach (IModifierProvider provider in GetComponents<IModifierProvider>())
+            {
+                foreach (float modifier in provider.GetAdditiveModifier(stat))
+                total += modifier;
+            }
+            return total;
+        }
 
         public int GetLevel()
         {
             if (currentLevel < 1)
-            {
                 currentLevel = CalculateLevel();
-            }
+
             return currentLevel;
         }
 
-        public int CalculateLevel()
+        private int CalculateLevel()
         {
             if (experience == null) return startingLevel;
 
