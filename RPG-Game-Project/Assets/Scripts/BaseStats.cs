@@ -12,6 +12,7 @@ namespace RPG.Stats
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression;
         [SerializeField] Transform levelUpParticleEffect;
+        [SerializeField] bool shouldUseModifiers;
 
         Experience experience;
         int currentLevel = 0;
@@ -21,16 +22,16 @@ namespace RPG.Stats
         private void Start()
         {
             currentLevel = CalculateLevel();
-            
-            if(experience != null)
+
+            if (experience != null)
                 experience.onExperienceGained += UpdateLevel;
         }
 
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
-            
-            if(newLevel > currentLevel)
+
+            if (newLevel > currentLevel)
             {
                 currentLevel = newLevel;
                 LevelUpEffect();
@@ -40,16 +41,35 @@ namespace RPG.Stats
 
         private void LevelUpEffect() => Instantiate(levelUpParticleEffect, transform);
 
-        public float GetStat(Stat stat) => 
-            progression.GetStat(stat, characterClass, GetLevel()) + GetAdditiveModifier(stat);
+        public float GetStat(Stat stat) =>
+            (GetBaseStat(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat) / 100);
+
+        private float GetBaseStat(Stat stat) => progression.GetStat(stat, characterClass, GetLevel());
 
         private float GetAdditiveModifier(Stat stat)
         {
+            if (!shouldUseModifiers) return 0;
+
             float total = 0f;
+
             foreach (IModifierProvider provider in GetComponents<IModifierProvider>())
             {
-                foreach (float modifier in provider.GetAdditiveModifier(stat))
-                total += modifier;
+                foreach (float modifier in provider.GetAdditiveModifiers(stat))
+                    total += modifier;
+            }
+            return total;
+        }
+
+        private float GetPercentageModifier(Stat stat)
+        {
+            if (!shouldUseModifiers) return 0;
+
+            float total = 0f;
+
+            foreach (IModifierProvider provider in GetComponents<IModifierProvider>())
+            {
+                foreach (float modifier in provider.GetPercentageModifiers(stat))
+                    total += modifier;
             }
             return total;
         }
@@ -72,8 +92,8 @@ namespace RPG.Stats
             for (int level = 1; level <= penultimateLevel; level++)
             {
                 float XPToLevelUp = progression.GetStat(Stat.ExperienceToLevelUp, characterClass, level);
-                
-                if(XPToLevelUp > currentXP)
+
+                if (XPToLevelUp > currentXP)
                     return level;
             }
             return penultimateLevel + 1;
