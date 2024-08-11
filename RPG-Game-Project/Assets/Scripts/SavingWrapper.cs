@@ -22,10 +22,10 @@ namespace RPG.SceneManagement
 
         IEnumerator LoadLastScene()
         {
-            CanvasFader canvasFader = FindObjectOfType<CanvasFader>();
-            canvasFader.FadeOutImmediate();
-
             yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
+            CanvasFader canvasFader = FindObjectOfType<CanvasFader>();
+
+            canvasFader.FadeOutImmediate();
             yield return canvasFader.FadeIn(fadeInTime);
         }
 

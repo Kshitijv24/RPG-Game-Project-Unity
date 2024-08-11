@@ -24,11 +24,13 @@ namespace RPG.Attributes
             animator = GetComponent<Animator>();
             actionScheduler = GetComponent<ActionScheduler>();
             
-            baseStats.onLevelUP += RegenarateHealth;
-
             if(healthPoints < 0)
                 healthPoints = baseStats.GetStat(Stat.Health);
         }
+
+        private void OnEnable() => baseStats.onLevelUP += RegenarateHealth;
+
+        private void OnDisable() => baseStats.onLevelUP -= RegenarateHealth;
 
         private void RegenarateHealth()
         {
