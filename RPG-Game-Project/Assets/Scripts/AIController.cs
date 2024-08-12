@@ -1,3 +1,4 @@
+using GameDevTV.Utils;
 using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
@@ -24,7 +25,7 @@ namespace RPG.Control
         ActionScheduler actionScheduler;
 
         GameObject player;
-        Vector3 guardPosition;
+        LazyValue<Vector3> guardPosition;
 
         string playerTag = "Player";
         float timeSinceLastSawPlayer = Mathf.Infinity;
@@ -38,12 +39,11 @@ namespace RPG.Control
             movement = GetComponent<MovementHandler>();
             actionScheduler = GetComponent<ActionScheduler>();
             player = GameObject.FindWithTag(playerTag);
+
+            guardPosition = new LazyValue<Vector3>(GetGuardPosition);
         }
 
-        private void Start()
-        {
-            guardPosition = transform.position;
-        }
+        private void Start() => guardPosition.ForceInit();
 
         private void Update()
         {
@@ -59,6 +59,8 @@ namespace RPG.Control
             UpdateTimers();
         }
 
+        private Vector3 GetGuardPosition() => transform.position;
+
         private void UpdateTimers()
         {
             timeSinceLastSawPlayer += Time.deltaTime;
@@ -67,7 +69,7 @@ namespace RPG.Control
 
         private void PatrolBehaviour()
         {
-            Vector3 nextPosition = guardPosition;
+            Vector3 nextPosition = guardPosition.value;
 
             if(patrolPath != null)
             {

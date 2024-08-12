@@ -5,6 +5,8 @@ using RPG.Saving;
 using UnityEngine;
 using RPG.Stats;
 using System.Collections.Generic;
+using GameDevTV.Utils;
+using System;
 
 namespace RPG.Combat
 {
@@ -19,8 +21,8 @@ namespace RPG.Combat
         MovementHandler movement = null;
         ActionScheduler actionScheduler = null;
         Animator animator = null;
-        Weapon currentWeapon = null;
         BaseStats baseStats = null;
+        LazyValue<Weapon> currentWeapon;
 
         string attack = "Attack";
         string stopAttack = "StopAttack";
@@ -32,14 +34,11 @@ namespace RPG.Combat
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
             baseStats = GetComponent<BaseStats>();
+
+            currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
 
-        private void Start()
-        {
-            if (currentWeapon != null) return;
-
-            EquipWeapon(defaultWeapon);
-        }
+        private void Start() => currentWeapon.ForceInit();
 
         private void Update()
         {
@@ -58,11 +57,19 @@ namespace RPG.Combat
             }
         }
 
+        private Weapon SetupDefaultWeapon()
+        {
+            AttachWeapon(defaultWeapon);
+            return defaultWeapon;
+        }
+
         public void EquipWeapon(Weapon weapon)
         {
-            currentWeapon = weapon;
-            weapon.Spawn(rightHand, leftHand, animator);
+            currentWeapon.value = weapon;
+            AttachWeapon(weapon);
         }
+
+        private void AttachWeapon(Weapon weapon) => weapon.Spawn(rightHand, leftHand, animator);
 
         public Health GetTarget() => target;
 
@@ -89,21 +96,16 @@ namespace RPG.Combat
             if (target == null) return;
             float damage = baseStats.GetStat(Stat.Damage);
 
-            if (currentWeapon.HasProjectile())
-                currentWeapon.LaunchProjectile(rightHand, leftHand, target, gameObject, damage);
+            if (currentWeapon.value.HasProjectile())
+                currentWeapon.value.LaunchProjectile(rightHand, leftHand, target, gameObject, damage);
             else
                 target.TakeDamage(gameObject, damage);
         }
 
         private void Shoot() => Hit();
 
-        private bool GetIsInRange()
-        {
-            if (currentWeapon == null)
-                Debug.Log("currentWeapon is null");
-
-            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
-        }
+        private bool GetIsInRange() => 
+            Vector3.Distance(transform.position, target.transform.position) < currentWeapon.value.GetRange();
 
         public bool CanAttack(GameObject combatTarget)
         {
@@ -135,16 +137,16 @@ namespace RPG.Combat
         public IEnumerable<float> GetAdditiveModifiers(Stat stat)
         {
             if (stat == Stat.Damage)
-                yield return currentWeapon.GetDamage();
+                yield return currentWeapon.value.GetDamage();
         }
 
         public IEnumerable<float> GetPercentageModifiers(Stat stat)
         {
             if (stat == Stat.Damage)
-                yield return currentWeapon.GetWeaponDamagePercentageBonas();
+                yield return currentWeapon.value.GetWeaponDamagePercentageBonas();
         }
 
-        public object CaptureState() => currentWeapon.name;
+        public object CaptureState() => currentWeapon.value.name;
 
         public void RestoreState(object state)
         {
