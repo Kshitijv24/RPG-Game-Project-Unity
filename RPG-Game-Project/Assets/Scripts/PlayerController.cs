@@ -1,6 +1,7 @@
 using RPG.Attributes;
 using RPG.Combat;
 using RPG.Movement;
+using System;
 using UnityEngine;
 
 namespace RPG.Control
@@ -11,6 +12,23 @@ namespace RPG.Control
         MovementHandler playerMovement;
         Fighter fighter;
         Health health;
+
+        enum CursoreType
+        {
+            None,
+            Movement,
+            Combat
+        }
+
+        [System.Serializable]
+        struct CursorMapping
+        {
+            public CursoreType type;
+            public Texture2D texture;
+            public Vector2 hotspot;
+        }
+
+        [SerializeField] CursorMapping[] cursorMappingArray;
 
         private void Awake()
         {
@@ -26,7 +44,7 @@ namespace RPG.Control
             if (InteractWithCombat()) return;
             if (MoveToMousePosition()) return;
 
-            //print("Can not move there");
+            SetCursor(CursoreType.None);
         }
 
         private bool InteractWithCombat()
@@ -44,9 +62,25 @@ namespace RPG.Control
                 if (Input.GetMouseButton(0))
                     fighter.Attack(target.gameObject);
 
+                SetCursor(CursoreType.Combat);
                 return true;
             }
             return false;
+        }
+
+        private void SetCursor(CursoreType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+
+        private CursorMapping GetCursorMapping(CursoreType type)
+        {
+            foreach (CursorMapping mapping in cursorMappingArray)
+            {
+                if(mapping.type == type) return mapping;
+            }
+            return cursorMappingArray[0];
         }
 
         private bool MoveToMousePosition()
@@ -59,6 +93,7 @@ namespace RPG.Control
                 if (Input.GetMouseButton(0))
                     playerMovement.StartMoveAction(hit.point, 1f);
 
+                SetCursor(CursoreType.Movement);
                 return true;
             }
             return false;

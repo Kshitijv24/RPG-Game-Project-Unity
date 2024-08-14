@@ -137,10 +137,10 @@ PrefabInstance:
       addedObject: {fileID: -5657208832904214973}
     - targetCorrespondingSourceObject: {fileID: 3764120247223483563, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6371189262344339319}
+      addedObject: {fileID: -5978208191081046847}
     - targetCorrespondingSourceObject: {fileID: 3764120247223483563, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -5978208191081046847}
+      addedObject: {fileID: 6371189262344339319}
   m_SourcePrefab: {fileID: 100100000, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
 --- !u!1 &5658313519035444028 stripped
 GameObject:
@@ -170,18 +170,6 @@ CapsuleCollider:
   m_Height: 2.2064996
   m_Direction: 1
   m_Center: {x: 0, y: 0.957037, z: 0}
---- !u!114 &6371189262344339319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5658313519035444028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f12b949eedf8612488737b9514b3ec3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5978208191081046847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +183,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experiencePoints: 0
+--- !u!114 &6371189262344339319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658313519035444028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12b949eedf8612488737b9514b3ec3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorMappingArray:
+  - type: 0
+    texture: {fileID: 2800000, guid: f8d327f88e3408f42b3dc6850224b676, type: 3}
+    hotspot: {x: 0, y: 0}
+  - type: 1
+    texture: {fileID: 2800000, guid: 1b362737dfa014a40a71ecaffce5e053, type: 3}
+    hotspot: {x: 0, y: 0}
+  - type: 2
+    texture: {fileID: 2800000, guid: ce683041f000c7c48b73e8fbda566384, type: 3}
+    hotspot: {x: 0, y: 0}
 --- !u!4 &7915708695553894197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1684546783491682466, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}
