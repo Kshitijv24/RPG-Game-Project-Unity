@@ -205,6 +205,9 @@ MonoBehaviour:
   - type: 2
     texture: {fileID: 2800000, guid: ce683041f000c7c48b73e8fbda566384, type: 3}
     hotspot: {x: 0, y: 0}
+  - type: 3
+    texture: {fileID: 2800000, guid: 42ec8a0e710138343a271d732299cfb6, type: 3}
+    hotspot: {x: 0, y: 0}
 --- !u!4 &7915708695553894197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1684546783491682466, guid: 418fc6ef7e0dd6844bd1fa7d188c925d, type: 3}

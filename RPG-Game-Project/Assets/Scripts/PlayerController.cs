@@ -3,6 +3,7 @@ using RPG.Combat;
 using RPG.Movement;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace RPG.Control
 {
@@ -17,7 +18,8 @@ namespace RPG.Control
         {
             None,
             Movement,
-            Combat
+            Combat,
+            UI
         }
 
         [System.Serializable]
@@ -40,7 +42,12 @@ namespace RPG.Control
 
         private void Update()
         {
-            if (health.IsDead()) return;
+            if (InteractWithUI()) return;
+            if (health.IsDead())
+            {
+                SetCursor(CursoreType.None);
+                return;
+            }
             if (InteractWithCombat()) return;
             if (MoveToMousePosition()) return;
 
@@ -77,9 +84,8 @@ namespace RPG.Control
         private CursorMapping GetCursorMapping(CursoreType type)
         {
             foreach (CursorMapping mapping in cursorMappingArray)
-            {
-                if(mapping.type == type) return mapping;
-            }
+                if (mapping.type == type) return mapping;
+
             return cursorMappingArray[0];
         }
 
@@ -94,6 +100,16 @@ namespace RPG.Control
                     playerMovement.StartMoveAction(hit.point, 1f);
 
                 SetCursor(CursoreType.Movement);
+                return true;
+            }
+            return false;
+        }
+
+        private bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursor(CursoreType.UI);
                 return true;
             }
             return false;
