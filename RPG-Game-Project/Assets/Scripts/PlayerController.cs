@@ -19,7 +19,8 @@ namespace RPG.Control
             None,
             Movement,
             Combat,
-            UI
+            UI,
+            Pickup
         }
 
         [System.Serializable]
@@ -48,28 +49,17 @@ namespace RPG.Control
                 SetCursor(CursoreType.None);
                 return;
             }
-            if (InteractWithCombat()) return;
+            if (InteractWithCoponent()) return;
             if (MoveToMousePosition()) return;
 
             SetCursor(CursoreType.None);
         }
 
-        private bool InteractWithCombat()
+        private bool InteractWithUI()
         {
-            RaycastHit[] hitArray = Physics.RaycastAll(GetMouseRay());
-            
-            foreach (RaycastHit hit in hitArray)
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-
-                if(target == null) continue;
-
-                if(!fighter.CanAttack(target.gameObject)) continue;
-
-                if (Input.GetMouseButton(0))
-                    fighter.Attack(target.gameObject);
-
-                SetCursor(CursoreType.Combat);
+                SetCursor(CursoreType.UI);
                 return true;
             }
             return false;
@@ -81,12 +71,24 @@ namespace RPG.Control
             Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
         }
 
-        private CursorMapping GetCursorMapping(CursoreType type)
+        private bool InteractWithCoponent()
         {
-            foreach (CursorMapping mapping in cursorMappingArray)
-                if (mapping.type == type) return mapping;
+            RaycastHit[] hitArray = Physics.RaycastAll(GetMouseRay());
 
-            return cursorMappingArray[0];
+            foreach (RaycastHit hit in hitArray)
+            {
+                IRayCastable[] rayCastablArray = hit.transform.GetComponents<IRayCastable>();
+
+                foreach (IRayCastable rayCastable in rayCastablArray)
+                {
+                    if (rayCastable.HandleRayCast(this))
+                    {
+                        SetCursor(CursoreType.Pickup);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private bool MoveToMousePosition()
@@ -105,14 +107,12 @@ namespace RPG.Control
             return false;
         }
 
-        private bool InteractWithUI()
+        private CursorMapping GetCursorMapping(CursoreType type)
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                SetCursor(CursoreType.UI);
-                return true;
-            }
-            return false;
+            foreach (CursorMapping mapping in cursorMappingArray)
+                if (mapping.type == type) return mapping;
+
+            return cursorMappingArray[0];
         }
 
         private Ray GetMouseRay() => mainCamera.ScreenPointToRay(Input.mousePosition);

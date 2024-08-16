@@ -200,13 +200,16 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: f8d327f88e3408f42b3dc6850224b676, type: 3}
     hotspot: {x: 0, y: 0}
   - type: 1
-    texture: {fileID: 2800000, guid: 1b362737dfa014a40a71ecaffce5e053, type: 3}
+    texture: {fileID: 2800000, guid: f27d2a87b8553f8438fadbb8f50e9bbd, type: 3}
     hotspot: {x: 0, y: 0}
   - type: 2
     texture: {fileID: 2800000, guid: ce683041f000c7c48b73e8fbda566384, type: 3}
     hotspot: {x: 0, y: 0}
   - type: 3
     texture: {fileID: 2800000, guid: 42ec8a0e710138343a271d732299cfb6, type: 3}
+    hotspot: {x: 0, y: 0}
+  - type: 4
+    texture: {fileID: 2800000, guid: 6d0916f30d4a8e84c839a037bed24d2a, type: 3}
     hotspot: {x: 0, y: 0}
 --- !u!4 &7915708695553894197 stripped
 Transform:
