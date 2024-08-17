@@ -14,19 +14,10 @@ namespace RPG.Control
         Fighter fighter;
         Health health;
 
-        enum CursoreType
-        {
-            None,
-            Movement,
-            Combat,
-            UI,
-            Pickup
-        }
-
         [System.Serializable]
         struct CursorMapping
         {
-            public CursoreType type;
+            public CursorType type;
             public Texture2D texture;
             public Vector2 hotspot;
         }
@@ -46,26 +37,26 @@ namespace RPG.Control
             if (InteractWithUI()) return;
             if (health.IsDead())
             {
-                SetCursor(CursoreType.None);
+                SetCursor(CursorType.None);
                 return;
             }
             if (InteractWithCoponent()) return;
             if (MoveToMousePosition()) return;
 
-            SetCursor(CursoreType.None);
+            SetCursor(CursorType.None);
         }
 
         private bool InteractWithUI()
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                SetCursor(CursoreType.UI);
+                SetCursor(CursorType.UI);
                 return true;
             }
             return false;
         }
 
-        private void SetCursor(CursoreType type)
+        private void SetCursor(CursorType type)
         {
             CursorMapping mapping = GetCursorMapping(type);
             Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
@@ -83,7 +74,7 @@ namespace RPG.Control
                 {
                     if (rayCastable.HandleRayCast(this))
                     {
-                        SetCursor(CursoreType.Pickup);
+                        SetCursor(rayCastable.GetCursorType());
                         return true;
                     }
                 }
@@ -101,13 +92,13 @@ namespace RPG.Control
                 if (Input.GetMouseButton(0))
                     playerMovement.StartMoveAction(hit.point, 1f);
 
-                SetCursor(CursoreType.Movement);
+                SetCursor(CursorType.Movement);
                 return true;
             }
             return false;
         }
 
-        private CursorMapping GetCursorMapping(CursoreType type)
+        private CursorMapping GetCursorMapping(CursorType type)
         {
             foreach (CursorMapping mapping in cursorMappingArray)
                 if (mapping.type == type) return mapping;
